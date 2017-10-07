@@ -1,0 +1,61 @@
+---
+title: "fars Package Overview"
+author: "Cardy Moten"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{fars Package Overview}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=FALSE}
+library(fars)
+```
+
+The functions in this packge are made to read, tidy, and display data from the National Highway Traffic Administration's Fatality Analysis Reporting System (FARS). 
+
+
+## Make the appropriate file name
+
+Before reading in the data, you must create the appropriate file name. The function ``make_filename()`` accomplishes this. For example, to make the filename for data in the year 2013, you would iput the following code:
+
+```{r}
+make_filename(2013)
+```
+
+## Create a data table
+
+After you make the file name, you can now read the ``csv.bz2`` file and create a tibble with the function ``fars_read()``. This function takes two arguments: the name of the file, and the file path. By default, the path of the file is set to the location of sample data that is included in this package for the years 2013, 2014, and 2015. 
+
+```{r}
+file_name <- make_filename(2013)
+fars_read(file_name)
+```
+
+## Read multiple years of data
+
+The ``fars_read_years()`` function takes a vector of years as an input and returns a list of tibbles. Each table contains the integer month (1-12) and the corresponding year. 
+
+```{r}
+years <- 2013:2015
+fars_read_years(years)
+```
+
+
+
+## Summarize multiple years of data
+
+The ``fars_summarize_years()`` functions also takes a vector of years as its sole argument. However, this function will return a row for each month and a count of the number of events per inputted year.
+
+```{r}
+fars_summarize_years(years)
+```
+
+## Create a state map of fatal events
+
+To create a map of the locations of fatal events within a state, use the ``fars_map_state()`` function. This function takes a registration state code number and year as its arguments. To find a particular registration state code, go to the [FARS documentation](https://crashstats.nhtsa.dot.gov/Api/Public/ViewPublication/812449). The example below will display the fatal accidents for Florida (code #12) in 2015.
+
+```{r}
+fars_map_state(12,2015)
+```

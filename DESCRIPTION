@@ -1,0 +1,27 @@
+Package: fars
+Type: Package
+Title: Read and Summarize Fatal Accident Data
+Version: 0.1.0
+Date: 2017-10-02
+Depends: R (>=  3.4.1)
+Imports:
+  dplyr,
+  graphics,
+  maps,
+  magrittr,
+  readr, 
+  tidyr
+Author: Cardy Moten III <cmoten@gmail.com>
+Maintainer: Cardy Moten III <cmoten@gmail.com>
+Description: The functions in this package will read, summarize, and display infomation contained in 
+    raw data files from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting 
+    System (FARS). FARS is a nationwide census that provides American public yearly data regarding fatal injuries
+    suffered in motor vehicle traffic crashes.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Suggests: knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
